@@ -7,23 +7,23 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import com.webigode.webservicesspring.entities.pk.OrderItemPK;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_order_item")
-public class OrderItem implements Serializable{
-	
+public class OrderItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private OrderItemPK id;
+	private OrderItemPK id = new OrderItemPK();
 	
 	private Integer quantity;
 	private Double price;
 	
 	public OrderItem() {
 	}
-	
-	public OrderItem(Order order,Product product,Integer quantity, Double price) {
+
+	public OrderItem(Order order, Product product, Integer quantity, Double price) {
 		super();
 		id.setOrder(order);
 		id.setProduct(product);
@@ -31,14 +31,7 @@ public class OrderItem implements Serializable{
 		this.price = price;
 	}
 
-	public OrderItemPK getId() {
-		return id;
-	}
-
-	public void setId(OrderItemPK id) {
-		this.id = id;
-	}
-	
+	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
 	}
@@ -47,14 +40,14 @@ public class OrderItem implements Serializable{
 		id.setOrder(order);
 	}
 	
-	public Product getProduct(){
+	public Product getProduct() {
 		return id.getProduct();
 	}
 	
 	public void setProduct(Product product) {
 		id.setProduct(product);
 	}
-
+	
 	public Integer getQuantity() {
 		return quantity;
 	}
@@ -95,6 +88,4 @@ public class OrderItem implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
 }
