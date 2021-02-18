@@ -21,7 +21,7 @@ A aplicação consiste em um registro de pedidos que contêm produtos para os us
 - Maven
 - H2 Database
 - PostgreSQL
-- Apache Tomcant
+- Apache Tomcat
 - Postman
 ## Implantação em produção
 - Back end: Heroku
